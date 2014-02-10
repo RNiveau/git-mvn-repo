@@ -1,0 +1,70 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation=" http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>fr.xebia.blog</groupId>
+        <artifactId>config</artifactId>
+        <version>1.1</version>
+    </parent>
+
+    <repositories>
+        <repository>
+            <id>my.mvn.repo</id>
+            <url>https://raw.github.com/RNiveau/git-mvn-repo/master/</url>
+            <!-- use snapshot version -->
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
+        </repository>
+    </repositories>
+
+    <scm>
+        <connection>scm:git:https://github.com/RNiveau/article-bom-maven/</connection>
+    <tag>reactor-1.1</tag>
+  </scm>
+
+    <artifactId>reactor</artifactId>
+    <version>1.1</version>
+    <packaging>pom</packaging>
+
+    <name>${project.artifactId}</name>
+
+    <profiles>
+        <profile>
+            <id>composantA</id>
+            <modules>
+                <module>composantA</module>
+                <module>bom-composant</module>
+            </modules>
+        </profile>
+        <profile>
+            <id>composantB</id>
+            <modules>
+                <module>composantB</module>
+                <module>bom-composant</module>
+            </modules>
+        </profile>
+        <profile>
+            <id>composantC</id>
+            <modules>
+                <module>composantC</module>
+                <module>bom-composant</module>
+            </modules>
+        </profile>
+    </profiles>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>2.4.2</version>
+                <configuration>
+                    <updateDependencies>false</updateDependencies>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
